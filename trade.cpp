@@ -78,8 +78,17 @@ int main() {
             int problem_id, buy;
             fscanf(stdin, "%d %d", &problem_id, &buy);
             pair<int, vector<Offer> > res = solve(problem_id, buy);
+            
+            long long int cost = 0;
             for (vector<Offer>::iterator i = res.second.begin(); i != res.second.end(); i++) {
-                fprintf(stdout, "%d %d ", i->id, i->quantity);
+                cost += (long long int)(i->price) * i->quantity;
+            }
+            double c = (double)(cost) / 1000000.0;
+            
+            fprintf(stdout, "Buying %d\tCost: %.2lf\tUsed offers: ", buy, c);
+            
+            for (vector<Offer>::iterator i = res.second.begin(); i != res.second.end(); i++) {
+                fprintf(stdout, "(id: %d, amount: %d)\t", i->id, i->quantity);
             }
             fprintf(stdout, "\n");
         }
