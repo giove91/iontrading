@@ -1,10 +1,10 @@
 #!/usr/bin/python
 
-from random import randint
+from random import randint, random
 
 MAX_PRICE=1e7
 MAX_QTY_PER_TICK=20
-MAX_TICK=3
+MAX_TICK=5
 
 id_markets=range(0,100)
 offerts_table={}
@@ -23,8 +23,12 @@ class Offer:
         self.qty=qty
         self.tick=tick
 
-for i in range(300):
-    action=randint(0,2)
+for i in range(int(1e6)):
+    ciao = random()
+    if ciao < 0.1:
+        action = 2
+    else:
+        action = randint(0, 1)
     # Fill the table at the beginning
     if i < 100:
         action=1
@@ -39,7 +43,7 @@ for i in range(300):
     elif action == 1:
         id=randint(0, len(id_markets)-1)
         price=randint(0,MAX_PRICE)
-        tick=randint(0,MAX_TICK)
+        tick=randint(1,MAX_TICK)
         qty=randint(0,MAX_QTY_PER_TICK)*tick
         offert=Offer(price=price,qty=qty, tick=tick)
         offerts_table[id].append(offert)
