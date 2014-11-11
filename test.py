@@ -23,7 +23,7 @@ class Offer:
         self.qty=qty
         self.tick=tick
 
-for i in range(int(1e6)):
+for i in range(int(1e5)):
     ciao = random()
     if ciao < 0.1:
         action = 2
